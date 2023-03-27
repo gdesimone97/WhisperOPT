@@ -13,6 +13,8 @@ WORKDIR WhisperOPT
 COPY whisper-large/ ./whisper-large/
 COPY whisper-large-no_conv/ ./whisper-large-no_conv/
 COPY whisper-large-tensorrt/ ./whisper-large-tensorrt/
+COPY whisper-medium-no_conv/ ./whisper-medium-no_conv/
+RUN apt install -y nano
 RUN wget https://nvidia.box.com/shared/static/iizg3ggrtdkqawkmebbfixo7sce6j365.whl -O onnxruntime_gpu-1.16.0-cp38-cp38-linux_aarch64.whl
 RUN python3 -m pip install *.whl
 RUN rm *.whl
