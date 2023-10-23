@@ -8,8 +8,9 @@ pipe = pipeline(
   "automatic-speech-recognition",
   model="openai/whisper-large-v2",
   chunk_length_s=30,
-  device=device,
-  accelerator="ort"
+  device="cpu",
+  accelerator="ort",
+  cache_dir=r"S:\MIE CARTELLE\PROGRAMMAZIONE\GITHUB\WhisperOPT"
 )
 ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
 sample = ds[0]["audio"]
