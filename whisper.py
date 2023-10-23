@@ -11,9 +11,8 @@ pipe = pipeline(
   model="openai/whisper-large-v2",
   chunk_length_s=30,
   device="cpu",
-  accelerator="ort",
-  cache_dir=curr_dir
-)
+  accelerator="ort"
+  )
 ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
 sample = ds[0]["audio"]
 prediction = pipe(sample.copy(), batch_size=8)["text"]
