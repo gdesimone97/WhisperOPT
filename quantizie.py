@@ -7,7 +7,7 @@ from optimum.onnxruntime import (
 
 # Configure base model and save directory for compressed model
 model_id = "openai/whisper-large-v2"
-save_dir = Path(__file__).parent.joinpath("whisper-large_avx512")
+save_dir = Path(__file__).parent.joinpath("whisper-large-tensorrt")
 
 # Export model in ONNX
 model = ORTModelForSpeechSeq2Seq.from_pretrained(model_id, export=True)
