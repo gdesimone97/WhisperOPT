@@ -162,3 +162,4 @@ models--openai--whisper-large-v2/blobs/1ce74630ed587e80f3db2b3d434f7026327f131e
 models--openai--whisper-large-v2/refs/main
 models--openai--whisper-large-v2/snapshots/696465c62215e36a9ab3f9b7672fe7749f1a1df5/config.json
 *.zip
+whisper-large*
