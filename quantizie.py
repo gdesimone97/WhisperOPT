@@ -19,7 +19,7 @@ onnx_models = list(Path(model_dir).glob("*.onnx"))
 print(onnx_models)
 quantizers = [ORTQuantizer.from_pretrained(model_dir, file_name=onnx_model) for onnx_model in onnx_models]
 
-qconfig = AutoQuantizationConfig.avx512(is_static=False, per_channel=False)
+qconfig = AutoQuantizationConfig.avx512_vnni(is_static=False, per_channel=False)
 
 for quantizer in quantizers:
     # Apply dynamic quantization and save the resulting model
