@@ -19,7 +19,7 @@ print("Loading model...")
 
 # Create pipeline based on quantized ONNX model
 model = ORTModelForSpeechSeq2Seq.from_pretrained(save_dir,
-                                                 provider="CUDAExecutionProvider",
+                                                 provider="CPUExecutionProvider",
                                                  )
 tokenizer = AutoTokenizer.from_pretrained(save_dir)
 feature_extractor = AutoFeatureExtractor.from_pretrained(save_dir)
