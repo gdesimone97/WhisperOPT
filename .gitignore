@@ -163,3 +163,4 @@ models--openai--whisper-large-v2/refs/main
 models--openai--whisper-large-v2/snapshots/696465c62215e36a9ab3f9b7672fe7749f1a1df5/config.json
 *.zip
 whisper-large*
+whisper-medium*
