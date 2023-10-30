@@ -13,10 +13,10 @@ WORKDIR WhisperOPT
 ADD whisper-large .
 ADD whisper-large-no_conv .
 ADD whisper-large-tensorrt .
-RUN python3 -m pip install --upgrade-strategy eager install optimum[onnxruntime-gpu]
-RUN python3 -m pip install datasets
 RUN wget https://nvidia.box.com/shared/static/iizg3ggrtdkqawkmebbfixo7sce6j365.whl -O onnxruntime_gpu-1.16.0-cp38-cp38-linux_aarch64.whl
 RUN python3 -m pip install *.whl
 RUN rm *.whl
+RUN python3 -m pip install --upgrade-strategy eager install optimum[onnxruntime-gpu]
+RUN python3 -m pip install datasets
 
 CMD [ "/bin/bash" ]
