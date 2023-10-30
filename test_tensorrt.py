@@ -6,8 +6,8 @@ from datasets import Audio, load_dataset
 from pathlib import Path
 import os
 
-os.environ["CUDA_PATH"] = "/usr/local/cuda"
-os.environ["LD_LIBRARY_PATH"] = "/usr/local/cuda-12.0/lib64"
+#os.environ["CUDA_PATH"] = "/usr/local/cuda"
+#os.environ["LD_LIBRARY_PATH"] = "/usr/local/cuda-12.0/lib64"
 
 
 # Number of inferences for comparing timings
