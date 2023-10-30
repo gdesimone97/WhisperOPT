@@ -18,5 +18,6 @@ RUN python3 -m pip install *.whl
 RUN rm *.whl
 RUN python3 -m pip install --upgrade-strategy eager install optimum[onnxruntime-gpu]
 RUN python3 -m pip install datasets
+ENV LD_PRELOAD=/usr/local/lib/python3.8/dist-packages/scikit_learn.libs/libgomp-d22c30c5.so.1.0.0
 
 CMD [ "/bin/bash" ]
