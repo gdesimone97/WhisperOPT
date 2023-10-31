@@ -6,9 +6,8 @@ from datasets import Audio, load_dataset
 from pathlib import Path
 import os
 
-#os.environ["CUDA_PATH"] = "/usr/local/cuda"
-#os.environ["LD_LIBRARY_PATH"] = "/usr/local/cuda-12.0/lib64"
-
+session_options = onnxruntime.SessionOptions()
+session_options.graph_optimization_level = onnxruntime.GraphOptimizationLevel.ORT_DISABLE_ALL
 
 # Number of inferences for comparing timings
 num_inferences = 4
@@ -21,16 +20,20 @@ inference_file = sample["array"]
 
 print("Loading model...")
 
+'''
 provider_options = {
     "trt_engine_cache_enable": True,
     "trt_engine_cache_path": "tmp/trt_cache_example"
 }
+'''
 
 # Create pipeline based on quantized ONNX model
 model = ORTModelForSpeechSeq2Seq.from_pretrained(save_dir,
                                                  use_cache=False,
                                                  provider="TensorrtExecutionProvider",
-                                                 provider_options=provider_options)
+                                                 session_options=session_options,
+                                                 provider_options={"trt_int8_enable": True})
+
 tokenizer = AutoTokenizer.from_pretrained(save_dir)
 feature_extractor = AutoFeatureExtractor.from_pretrained(save_dir)
 cls_pipeline_onnx = pipeline("automatic-speech-recognition", model=model, tokenizer=tokenizer, feature_extractor=feature_extractor)
