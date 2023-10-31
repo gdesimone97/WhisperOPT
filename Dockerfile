@@ -10,9 +10,9 @@ WORKDIR WhisperOPT
 #RUN wget https://github.com/gdesimone97/WhisperOPT/releases/download/whisper-largev2-onnx-avx512_vnni-no-conv/whisper-large-no_conv.zip
 #RUN wget https://github.com/gdesimone97/WhisperOPT/releases/download/whisper-largev2-onnx-avx512_vnni/whisper-large.zip
 #RUN wget https://github.com/gdesimone97/WhisperOPT/releases/download/whisper-largev2-onnx-ternsorrt/whisper-large-tensorrt.zip
-COPY whisper-large/ .
-COPY whisper-large-no_conv/ .
-COPY whisper-large-tensorrt/ .
+COPY whisper-large/ ./
+COPY whisper-large-no_conv/ ./
+COPY whisper-large-tensorrt/ ./
 RUN wget https://nvidia.box.com/shared/static/iizg3ggrtdkqawkmebbfixo7sce6j365.whl -O onnxruntime_gpu-1.16.0-cp38-cp38-linux_aarch64.whl
 RUN python3 -m pip install *.whl
 RUN rm *.whl
