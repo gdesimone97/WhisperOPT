@@ -1,5 +1,6 @@
 from datetime import datetime
 from scipy.io import wavfile
+import onnxruntime
 from optimum.onnxruntime import ORTModelForSpeechSeq2Seq
 from transformers import pipeline, AutoTokenizer, AutoFeatureExtractor
 from datasets import Audio, load_dataset
