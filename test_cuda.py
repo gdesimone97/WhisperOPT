@@ -8,7 +8,7 @@ import os
 
 # Number of inferences for comparing timings
 num_inferences = 4
-save_dir = Path(__file__).parent.joinpath("whisper-large-no_conv") #complete here
+save_dir = Path(__file__).parent.joinpath("whisper-large-v2-optimized") #complete here
 inference_file_path =  Path(__file__).parent.joinpath("test.wav") #complete here
 
 ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
