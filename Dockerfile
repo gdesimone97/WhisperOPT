@@ -6,7 +6,5 @@ RUN wget https://nvidia.box.com/shared/static/pmsqsiaw4pg9qrbeckcbymho6c01jj4z.w
 RUN python3 -m pip install -U --ingnore-installed pyyaml
 RUN python3 -m pip install ./*.whl
 RUN python3 -m pip install optimum[onnxruntime] accelerate
-RUN git clone https://github.com/gdesimone97/WhisperOPT -b aarch64
-WORKDIR WhisperOPT
 
 CMD [ "/bin/bash" ]
