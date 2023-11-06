@@ -164,3 +164,4 @@ models--openai--whisper-large-v2/snapshots/696465c62215e36a9ab3f9b7672fe7749f1a1
 *.zip
 whisper-large*
 whisper-medium*
+nohup.out
