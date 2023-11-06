@@ -1,0 +1,14 @@
+FROM nvcr.io/nvidia/l4t-ml:r32.6.1-py3
+
+WORKDIR /root/
+RUN apt update
+RUN apt install -y python3.8 python3.8-dev
+RUN python3.8 -m pip install -U pip
+RUN python3.8 -m pip install torch
+RUN wget https://nvidia.box.com/shared/static/2sv2fv1wseihaw8ym0d4srz41dzljwxh.whl -O onnxruntime_gpu-1.11.0-cp38-cp38-linux_aarch64.whl
+RUN python3.8 -m pip install -U --ignore-installed pyyaml
+RUN python3.8 -m pip install ./*.whl
+RUN python3.8 -m pip install optimum[onnxruntime] accelerate
+RUN python3.8 -m pip install soundfile librosa setuptools
+RUN apt install -y nano net-tools
+CMD [ "/bin/bash" ]
