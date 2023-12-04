@@ -5,7 +5,7 @@ from optimum.onnxruntime import (
 )
 
 curr_dir = Path(__file__).parent
-model_id = "openai/whisper-large-v2"
+model_id = "openai/whisper-medium"
 model_name = model_id.split("/")[1]
 save_dir = curr_dir.joinpath((model_name + "-optimized"))
 
