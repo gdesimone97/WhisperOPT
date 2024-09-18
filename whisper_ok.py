@@ -35,5 +35,5 @@ while True:
         break
     new_token = np.reshape(new_token, (1, 1))
     text_features = np.append(text_features, new_token, axis=-1)
-    decode = processor.batch_decode(text_features)[0]
+    decode = processor.batch_decode(text_features, skip_special_tokens=True)[0]
     print(decode)
