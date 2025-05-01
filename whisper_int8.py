@@ -117,7 +117,7 @@ if __name__ == "__main__":
     decoder = Decoder(decoder, whisper_model.proj_out).to("cuda")
     processor = WhisperProcessor.from_pretrained(model_name)
     processor.tokenizer.set_prefix_tokens(language="en", task="transcribe")
-    config = mtq.INT8_SMOOTHQUANT_CFG
+    config = mtq.INT8_DEFAULT_CFG
     dummy = torch.randn(1, 128, 3000).to("cuda")
     
     encoder = mtq.quantize(encoder, config, forward_encoder)
