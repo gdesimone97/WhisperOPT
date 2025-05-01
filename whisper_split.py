@@ -13,18 +13,18 @@ import torch
 import numpy as np
 from torch.nn import functional as F
 import onnxruntime as ort
+import librosa
 
 os.chdir(Path(__file__).parent)
 
 # Select an audio file and read it:
-ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
-audio_sample = ds[0]["audio"]
+audio_sample, sr = librosa.load("test.wav", sr=16000)
 
 # Load the Whisper model in Hugging Face format:
 processor = WhisperProcessor.from_pretrained("openai/whisper-large-v3-turbo")
 processor.get_decoder_prompt_ids(task="transcribe", language="english")
 input_features = processor(
-    audio_sample["array"], sampling_rate=audio_sample["sampling_rate"], return_tensors="pt"
+    audio_sample, sampling_rate=sr, return_tensors="pt"
 ).input_features.numpy()
 
 prompt_ids = processor(text="")["input_ids"][:-1]
