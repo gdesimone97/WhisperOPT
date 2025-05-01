@@ -60,20 +60,26 @@ def forward_encoder(model):
         NUM_STEPS = i
         
 def forward_decoder(model):
-    batch_size = 1
     bar = tqdm(total=MAX_ITER, desc="Calibrating", unit="batch")
-    decoder_prompt_ids = processor.get_decoder_prompt_ids()
-    decoder_prompt_ids = [p[1] for p in decoder_prompt_ids]
-    decoder_prompt_ids = torch.LongTensor(decoder_prompt_ids).unsqueeze(0)
+    decoder_prompt_ids = processor(text="", return_tensors="pt")["input_ids"][..., :-1]
+    eos = processor.tokenizer.eos_token_id
+    new_token = None
     for i in range(NUM_STEPS):
         last_hidden_state = torch.load(
             out_tensors_path.joinpath(f"last_hidden_{i}.pt")
         ).to("cuda")
-        inputs = {}
-        inputs["input_ids"] = decoder_prompt_ids
-        inputs["encoder_hidden_states"] = last_hidden_state
-        inputs = {k: v.to("cuda") for k, v in inputs.items()}
-        model(**inputs)
+        while new_token is None or (new_token != eos and j < 400):
+            j = 0
+            inputs = {}
+            inputs["input_ids"] = decoder_prompt_ids
+            inputs["encoder_hidden_states"] = last_hidden_state
+            inputs = {k: v.to("cuda") for k, v in inputs.items()}
+            logits = model(**inputs)
+            new_token = torch.argmax(logits, dim=-1)[:, -1].unsqueeze(0)
+            decoder_prompt_ids = torch.cat([decoder_prompt_ids.to("cuda"), new_token], dim=-1)
+            out_text = processor.batch_decode(decoder_prompt_ids, skip_special_tokens=False)
+            j += 1
+        print(f"Decoded text: {out_text}")
         bar.update(1)
 
 if __name__ == "__main__":
