@@ -24,8 +24,8 @@
             },
             "pathMappings": [
                 {
-                    "localRoot": "/home/dsmgpp000/code/MultiEngagement",
-                    "remoteRoot": "/home/dsmgpp000/code/MultiEngagement"
+                    "localRoot": "/home/dsmgpp000/code/WhisperOPT",
+                    "remoteRoot": "/home/dsmgpp000/code/WhisperOPT"
                 }
             ]
         },
@@ -40,8 +40,8 @@
             },
             "pathMappings": [
                 {
-                    "localRoot": "/home/dsmgpp000/code/MultiEngagement",
-                    "remoteRoot": "/home/dsmgpp000/code/MultiEngagement"
+                    "localRoot": "/home/dsmgpp000/code/WhisperOPT",
+                    "remoteRoot": "/home/dsmgpp000/code/WhisperOPT"
                 }
             ]
         }
