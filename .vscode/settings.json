@@ -1,0 +1,7 @@
+{
+    "cmake.configureOnOpen": false,
+    "files.autoSave": "afterDelay",
+    "python.analysis.include": [
+        "/workspace/ros_ws/devel/lib/python2.7/dist-packages"
+    ]
+}
